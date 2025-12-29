@@ -30,6 +30,6 @@ Acesse diretamente pelo navegador sem instalar nada:
 Basta clonar o repositório e abrir o arquivo `index.html` no seu navegador. Não requer instalação de Node.js, Python ou servidores web complexos.
 
 ```bash
-git clone [https://github.com/chrysthianchrisley/tarjamento.git](https://github.com/chrysthianchrisley/tarjamento.git)
+git clone https://github.com/chrysthianchrisley/tarjamento.git
 cd tarjamento
 # Abra o arquivo index.html no Chrome, Firefox ou Edge
