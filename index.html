@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjamento | Conformidade LGPD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <svg class="brand-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <span>Tarjamento LGPD</span>
+                </div>
+                <p class="brand-subtitle">Tarjamento de Dados LGPD</p>
+            </div>
+
+            <nav class="tools-nav">
+                <div id="upload-group" class="tool-group">
+                    <label for="file-input" class="upload-btn">
+                        <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <span>Carregar Documento PDF</span>
+                    </label>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                    <p class="helper-text">Privacidade total: O documento não é enviado para nenhum servidor externo.</p>
+                </div>
+
+                <div id="editor-group" class="tool-group hidden">
+                    <div class="group-header">
+                        <span>DETECÇÃO AUTOMÁTICA</span>
+                    </div>
+                    
+                    <button class="tool-btn" id="btn-scan-docs">
+                        <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                        </svg>
+                        <div>
+                            <span class="btn-label">CPF & CNPJ</span>
+                            <span class="btn-status" id="status-docs">--</span>
+                        </div>
+                    </button>
+
+                    <button class="tool-btn" id="btn-scan-email">
+                        <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <div>
+                            <span class="btn-label">E-mails</span>
+                            <span class="btn-status" id="status-email">--</span>
+                        </div>
+                    </button>
+
+                    <button class="tool-btn" id="btn-scan-phone">
+                        <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <div>
+                            <span class="btn-label">Telefones</span>
+                            <span class="btn-status" id="status-phone">--</span>
+                        </div>
+                    </button>
+
+                    <div class="divider"></div>
+
+                    <div class="stats-panel">
+                        <div class="stat-row">
+                            <span>Itens Selecionados</span>
+                            <strong id="items-count">0</strong>
+                        </div>
+                        <button id="clear-all" class="text-btn">Limpar seleção</button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer hidden" id="action-footer">
+                <button id="download-btn" class="primary-btn">
+                    <svg class="icon-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Gerar PDF Protegido
+                </button>
+                <button id="new-file" class="secondary-btn">Trocar Arquivo</button>
+            </div>
+        </aside>
+
+        <main class="workspace">
+            <header class="workspace-header">
+                <span id="file-name" class="file-badge">Nenhum arquivo</span>
+                <div class="zoom-controls">
+                    <span>Visualização</span>
+                </div>
+            </header>
+
+            <div class="privacy-badge">
+                <svg class="icon-tiny" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>100% Offline & Seguro</span>
+            </div>
+
+            <div id="pdf-container" class="pdf-viewer">
+                <div class="empty-state hero-content">
+                    <div class="hero-icon-container">
+                        <svg class="hero-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <div class="hero-badge">PDF</div>
+                    </div>
+                    
+                    <h1 class="hero-title">Tarjamento Seguro</h1>
+                    <p class="hero-subtitle">Tarjamento de documentos sensíveis com processamento local.</p>
+
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <span class="check-icon">✓</span> Nenhum dado sai do seu PC
+                        </div>
+                        <div class="feature-item">
+                            <span class="check-icon">✓</span> Detecção automática de CPF/CNPJ
+                        </div>
+                        <div class="feature-item">
+                            <span class="check-icon">✓</span> Tarja preta definitiva (Rasterização)
+                        </div>
+                    </div>
+
+                    <button class="hero-btn" onclick="document.getElementById('file-input').click()">
+                        Selecionar Arquivo PDF
+                    </button>
+                    
+                    <p class="drag-hint">ou arraste e solte o arquivo aqui</p>
+                </div>
+            </div>
+        </main>
+
+        <div id="loader" class="loader-overlay hidden">
+            <div class="spinner"></div>
+            <p>Processando documento...</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7/download.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

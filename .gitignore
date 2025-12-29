@@ -1,0 +1,38 @@
+# --- Dependências (Node.js) ---
+# Caso você instale bibliotecas via npm/yarn no futuro
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# --- Sistema Operacional ---
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# --- IDEs e Editores ---
+.vscode/
+.idea/
+*.sublime-workspace
+*.swp
+
+# --- Configurações Locais e Linter ---
+# Ignorar configuração local do Webhint conforme solicitado
+.hintrc
+.env
+
+# --- Arquivos Gerados (Testes) ---
+# Evita enviar para o GitHub os PDFs que você gerou testando a ferramenta
+Tarjamento_Seguro_*.pdf
+Zerarastro_Seguro_*.pdf
+output.pdf
